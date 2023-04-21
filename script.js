@@ -58,6 +58,7 @@ function makeDiv() {
     read.innerHTML = "Read";
     remove.innerHTML = "Remove";
 
+    read.style.backgroundColor = "rgb(0, 198, 17)";
     // adding content to div, div to main2
     styleDiv(div, read, remove);
     div.appendChild(namd);
@@ -71,7 +72,7 @@ function makeDiv() {
     });
     read.addEventListener("click", () => {
       if (read.style.backgroundColor === "rgb(239, 92, 92)") {
-        read.style.backgroundColor = "rgb(221, 219, 219)";
+        read.style.backgroundColor = "rgb(58, 238, 48)";
         read.innerHTML = "Read";
       } else {
         read.style.backgroundColor = "rgb(239, 92, 92)";
