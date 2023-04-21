@@ -55,10 +55,10 @@ function makeDiv() {
     namd.innerHTML = `${myLibrary[i].name}`;
     authD.innerHTML = `${myLibrary[i].author}`;
     pageD.innerHTML = `${myLibrary[i].pages}`;
-    read.innerHTML = "Read";
+    read.innerHTML = "Not read";
     remove.innerHTML = "Remove";
 
-    read.style.backgroundColor = "rgb(0, 198, 17)";
+    read.style.backgroundColor = "rgb(239, 92, 92)";
     // adding content to div, div to main2
     styleDiv(div, read, remove);
     div.appendChild(namd);
@@ -72,7 +72,7 @@ function makeDiv() {
     });
     read.addEventListener("click", () => {
       if (read.style.backgroundColor === "rgb(239, 92, 92)") {
-        read.style.backgroundColor = "rgb(58, 238, 48)";
+        read.style.backgroundColor = "rgb(0, 198, 17)";
         read.innerHTML = "Read";
       } else {
         read.style.backgroundColor = "rgb(239, 92, 92)";
