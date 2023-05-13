@@ -92,6 +92,7 @@ video {
   font: inherit;
   vertical-align: baseline;
 }
+
 /* HTML5 display-role reset for older browsers */
 article,
 aside,
@@ -106,17 +107,21 @@ nav,
 section {
   display: block;
 }
+
 body {
   line-height: 1;
 }
+
 ol,
 ul {
   list-style: none;
 }
+
 blockquote,
 q {
   quotes: none;
 }
+
 blockquote:before,
 blockquote:after,
 q:before,
@@ -124,6 +129,7 @@ q:after {
   content: "";
   content: none;
 }
+
 table {
   border-collapse: collapse;
   border-spacing: 0;
@@ -132,16 +138,42 @@ table {
 /* css styling from here-- */
 * {
 }
+
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap");
+
 :root {
-  --font: "Poppins", sans-serif;
+  /* --font: "Poppins", sans-serif; */
+  --font: "Montserrat", sans-serif;
+  --primary-color: #16213e;
+  --secondary-color: #f3d7b6;
+  --tertiary-color: #fe5f55;
+  --quaternary-color: #c7c7c7;
+  --hover-color: #8b6640;
 }
+
+/* .main2 {
+  background-image: url("https://images.unsplash.com/photo-1549488343-128bfc25d4f6");
+  background-size: cover;
+}
+
+/* Add overlay to background image */
+/* .main2:before {
+  content: "";
+  background-color: rgba(60, 36, 21, 0.7);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+} */
 
 /* body 2 */
 .body2 {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background-color: #f0eef1;
+  background-color: var(--primary-color);
+  color: var(--quaternary-color);
   font-family: var(--font);
 }
 
@@ -151,11 +183,15 @@ header {
   justify-content: space-between;
   /* padding : top right bottom left; */
   padding: 0.5% 1.5% 0.7% 2%;
-  background-color: #fffbfb;
+  background-color: var(--secondary-color);
+  /* color: var(--primary-color); */
 }
 
-.heading {
-  font-size: 3rem;
+#heading {
+  padding-top: 0.3rem;
+  font-size: 2.5rem;
+  font-weight: bold;
+  font-style: italic;
 }
 
 .log-in {
@@ -163,6 +199,10 @@ header {
   width: 8%;
   height: 2.5rem;
   margin-top: 0.4%;
+  background-color: var(--tertiary-color);
+  color: var(--quaternary-color);
+  border: none;
+  border-radius: 5px;
 }
 
 /* styling main */
@@ -174,15 +214,19 @@ header {
 }
 
 .add-book {
-  margin-top: 2.5%;
-  margin-bottom: 2%;
+  margin-top: 1%;
+  margin-bottom: 1%;
+  padding: 1%;
   font-size: 1.2rem;
   border-radius: 14px;
   border: none;
-  background-color: ;
+  color: #3c2415;
+  font: var(--font);
+  background-color: #f5deb3;
+  /* color: */
 }
-/* styling form */
 
+/* styling form  */
 #form {
   font-family: var(--font);
   z-index: 1000;
@@ -209,22 +253,26 @@ header {
 .dull-background.active {
   display: block; /* show when active */
 }
-
 form input {
   width: 90%;
   height: 13%;
-  border-radius: 11px;
-  border: none;
   padding: 8%;
 }
-
 form h1 {
   padding-top: 5%;
   text-align: center;
 }
+
+form input,
 form button {
+  border-radius: 20px;
   border: none;
-  background-color: aquamarine;
+}
+
+form button {
+  background-color: #3c2415;
+  color: #f5deb3;
+  font-weight: bold;
   border-radius: 7px;
   width: 4rem;
   height: 1.7rem;
@@ -232,7 +280,6 @@ form button {
   position: relative;
   left: 35%;
 }
-
 .form-div {
   margin: 5%;
   position: relative;
@@ -240,35 +287,98 @@ form button {
   top: 3%;
 }
 
-/* styling main2 that is our div to add books */
-
+/* styling main 2 */
 .main2 {
   flex: 1;
-  background-color: #f0eef1;
+  background-color: #f5deb3;
   margin-top: 1%;
   padding-left: 6%;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 }
-/* styling the dynamic divs */
-div.added {
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+
+/* Update header styles */
+header {
+  background-color: #3c2415;
+  color: #f5deb3;
+}
+
+/* Update login button styles */
+.log-in {
+  background-color: #3c2415;
+  color: #f5deb3;
+  border-radius: 20px;
   border: none;
-  background-color: #fffbfb;
-  border-radius: 5%;
+  font-weight: bold;
+  font-size: 1.1rem;
+  width: 10%;
+  height: 3rem;
+  margin-top: 0.7%;
+  transition: background-color 0.2s ease-in-out;
+}
+
+/* Update background color */
+.body2 {
+  background-color: #f5deb3;
+}
+
+/* Update dynamic div styles */
+div.added {
+  background-color: #f8ecc2;
+  color: black;
+  font-size: 1.5em;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  border-radius: 20px;
   margin: 2%;
   display: flex;
-  height: 14rem;
-  width: 15rem;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+  padding: 1.5rem;
+  height: 14rem;
+  width: 15rem;
+  text-align: center;
 }
 
+/* Update heading styles */
+.heading {
+  font-size: 4rem;
+  color: #3c2415;
+  margin: 0;
+}
+
+/* Add hover effect to dynamic divs */
+div.added:hover {
+  background-color: var(--hover-color);
+  transform: translateY(-10px);
+}
+
+/* /* Add border to active form */
+.dull-background.active + #form {
+  border: 5px solid #3c2415;
+}
+
+/* Add hover effect to login button */
+.log-in:hover {
+  background-color: #f5deb3;
+  color: #3c2415;
+  cursor: pointer;
+}
+.add-book:hover {
+  background-color: #3c2415;
+  color: #f5deb3;
+  cursor: pointer;
+}
 .style-button {
   border: none;
-  background-color: rgb(221, 219, 219);
+  background-color: #f5deb3;
+  color: #3c2415;
+  font-weight: bold;
   border-radius: 10px;
-  height: 2rem;
-  width: 10rem;
+  height: 2.5rem;
+  width: 8rem;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

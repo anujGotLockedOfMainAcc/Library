@@ -1,10 +1,14 @@
-let myLibrary = [];
+let myLibrary = localStorage.getItem("items")
+  ? JSON.parse(localStorage.getItem("items"))
+  : [];
+makeDiv();
 
 // constructor to create book objects
 function book(bookName, author, pages) {
   this.name = bookName;
   this.author = author;
   this.pages = pages;
+  this.read = "Not Read";
 }
 
 // TO ADD BOOK TO THE myLib
@@ -22,10 +26,12 @@ form.addEventListener("submit", (e) => {
   //using data
   let bookk = new book(bookName, author, pages);
   myLibrary.push(bookk);
+  // addBooks(bookk);
   hideForm();
   refreshForm();
   makeDiv();
-  myLibrary.shift();
+  addBooks(bookk);
+  // myLibrary.shift();
 });
 
 // form pop-up
@@ -42,6 +48,7 @@ function hideForm() {
 //make div
 function makeDiv() {
   let main2 = document.querySelector(".main2");
+  cleanDiv(main2);
   for (let i = 0; i < myLibrary.length; i++) {
     // creating div and its elements
     let div = document.createElement("div");
@@ -55,10 +62,15 @@ function makeDiv() {
     namd.innerHTML = `${myLibrary[i].name}`;
     authD.innerHTML = `${myLibrary[i].author}`;
     pageD.innerHTML = `${myLibrary[i].pages}`;
-    read.innerHTML = "Not read";
+    if (myLibrary[i].read === "Read") {
+      read.style.backgroundColor = "#6b8e23";
+    } else {
+      read.style.backgroundColor = "#e2725b ";
+    }
+    read.innerHTML = `${myLibrary[i].read}`;
     remove.innerHTML = "Remove";
 
-    read.style.backgroundColor = "rgb(239, 92, 92)";
+    // read.style.backgroundColor = "rgb(239, 92, 92)";
     // adding content to div, div to main2
     styleDiv(div, read, remove);
     div.appendChild(namd);
@@ -68,15 +80,21 @@ function makeDiv() {
     div.appendChild(remove);
     // adding remove and read functionality
     remove.addEventListener("click", () => {
-      div.remove();
+      update(div, i);
     });
     read.addEventListener("click", () => {
-      if (read.style.backgroundColor === "rgb(239, 92, 92)") {
-        read.style.backgroundColor = "rgb(0, 198, 17)";
+      if (myLibrary[i].read === "Not Read") {
+        console.log("hi");
+        read.style.backgroundColor = "#6b8e23";
         read.innerHTML = "Read";
+        myLibrary[i].read = "Read";
+        localStorage.setItem("items", JSON.stringify(myLibrary));
       } else {
-        read.style.backgroundColor = "rgb(239, 92, 92)";
-        read.innerHTML = "Not read";
+        console.log("hi");
+        read.style.backgroundColor = "#e2725b";
+        read.innerHTML = "Not Read";
+        myLibrary[i].read = "Not Read";
+        localStorage.setItem("items", JSON.stringify(myLibrary));
       }
     });
 
@@ -109,4 +127,22 @@ function styleDiv(div, read, remove) {
   div.classList.add("added");
   read.classList.add("style-button");
   remove.classList.add("style-button");
+}
+
+//  function to add book to local storage
+function addBooks(book) {
+  localStorage.setItem("items", JSON.stringify(myLibrary));
+}
+
+//function to remove book
+function update(div, i) {
+  div.remove();
+  myLibrary.splice(i, 1);
+  localStorage.setItem("items", JSON.stringify(myLibrary));
+}
+
+function cleanDiv(main2) {
+  while (main2.firstChild) {
+    main2.removeChild(main2.firstChild);
+  }
 }
